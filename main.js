@@ -5,8 +5,13 @@ document.querySelector('#app').innerHTML = `
   <a href="https://vitejs.dev/guide/features.html" target="_blank">Documentation</a>
 `
 import * as THREE from 'three'
+import { seededRandom } from 'three/src/math/MathUtils';
 
 const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize(innerWidth,innerHeight);
+document.body.appendChild(renderer.domElement);
 console.log(scene);
 {
   const color = 0xFFFFFF;
@@ -15,13 +20,11 @@ console.log(scene);
   light.position.set(-1, 2, 4);
   scene.add(light);
 }
-
-const camera = new THREE.PerspectiveCamera(75,innerWidth/innerHeight,0.1,1000);
-const renderer = new THREE.WebGLRenderer();
-renderer.setSize(innerWidth,innerHeight);
-document.body.appendChild(renderer.domElement);
+const spread = 15;
+//Cube Geometry
 const boxGeometry = new THREE.BoxGeometry(1,1,1);
-camera.position.z = 5;
+
+/*
 function makeInstance(Geometry, color, x) {
   const material = new THREE.MeshPhongMaterial({color});
 
@@ -53,19 +56,86 @@ function render(time) {
 }
 render(0.01);
 
-/*const boxGeometry = new THREE.BoxGeometry(1,1,1);
+*/
+
 const material = new THREE.MeshPhongMaterial({color:0x44aa88});
-const mesh = new THREE.Mesh(boxGeometry,material);
+
+const cube = new THREE.Mesh(boxGeometry,material);
+
 camera.position.z = 5;
+//Circle Geometry
+const radius = 2;  
+
+const segments = 8;  
+
+const circleGeometry = new THREE.CircleGeometry(radius, segments);
+
+const material1 = new THREE.MeshPhongMaterial({color:0x44aa88});
+
+const Circle = new THREE.Mesh(circleGeometry,material1);
+
+
+
+//Cone Geometry
+
+//const radius = 6;  
+
+//const height = 8;  
+
+//const radialSegments = 16;  
+
+const ConeGeometry = new THREE.ConeGeometry(2, 2, 6);
+
+const material2 = new THREE.MeshPhongMaterial({color:0x44aa88});
+
+const Cone= new THREE.Mesh(ConeGeometry,material2);
+//Cylinder Geometry
+
+//const radiusTop = 4;  
+
+//const radiusBottom = 4;  
+
+//const height = 8;  
+
+//const radialSegments = 12;  
+
+const cylinderGeometry = new THREE.CylinderGeometry(
+    2, 2, 2, 8);
+
+ const material3 = new THREE.MeshPhongMaterial({color:0x44aa88});
+
+const Cylinder = new THREE.Mesh(cylinderGeometry,material3);
+
+//DodecahedronGeometry
+
+//const radius = 7;  
+
+//const detail = 2;  
+
+const dodecahedronGeometry = new THREE.DodecahedronGeometry(2, 2);
+
+const material4 = new THREE.MeshPhongMaterial({color:0x44aa88});
+const Dodecahedron = new THREE.Mesh(dodecahedronGeometry,material4);
+
+//function animate
 function animate(){
   requestAnimationFrame(animate);
   renderer.render(scene,camera);
-  mesh.rotation.x += 0.1;
-  mesh.rotation.y += 0.1;
+  cube.rotation.x += 0.001;
+  cube.rotation.y += 0.001;
+  Cone.rotation.x += 0.005;
+  Cone.rotation.y += 0.005;
+  Circle.rotation.x += 0.001;
+  Circle.rotation.y += 0.001;
+  Cylinder.rotation.x += 0.005;
+  Cylinder.rotation.y += 0.005;
+  Dodecahedron.rotation.x += 0.001;
+  Dodecahedron.rotation.y += 0.001;
 }
-scene.add(mesh);
+scene.add(cube);
+scene.add(Cone);
+scene.add(Circle);
+scene.add(Dodecahedron);
+scene.add(Cylinder);
 animate();
-*/
-
-
 
