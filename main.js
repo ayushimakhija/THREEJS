@@ -20,7 +20,7 @@ console.log(scene);
   light.position.set(-1, 2, 4);
   scene.add(light);
 }
-const spread = 15;
+
 //Cube Geometry
 const boxGeometry = new THREE.BoxGeometry(1,1,1);
 
@@ -64,13 +64,13 @@ const cube = new THREE.Mesh(boxGeometry,material);
 
 camera.position.z = 5;
 //Circle Geometry
-const radius = 2;  
+const radius = 1;  
 
-const segments = 8;  
+const segments = 6;  
 
 const circleGeometry = new THREE.CircleGeometry(radius, segments);
 
-const material1 = new THREE.MeshPhongMaterial({color:0x44aa88});
+const material1 = new THREE.MeshPhongMaterial({color:0x44ff00});
 
 const Circle = new THREE.Mesh(circleGeometry,material1);
 
@@ -84,9 +84,9 @@ const Circle = new THREE.Mesh(circleGeometry,material1);
 
 //const radialSegments = 16;  
 
-const ConeGeometry = new THREE.ConeGeometry(2, 2, 6);
+const ConeGeometry = new THREE.ConeGeometry(1, 2, 6);
 
-const material2 = new THREE.MeshPhongMaterial({color:0x44aa88});
+const material2 = new THREE.MeshPhongMaterial({color:0x66ff01});
 
 const Cone= new THREE.Mesh(ConeGeometry,material2);
 //Cylinder Geometry
@@ -100,9 +100,9 @@ const Cone= new THREE.Mesh(ConeGeometry,material2);
 //const radialSegments = 12;  
 
 const cylinderGeometry = new THREE.CylinderGeometry(
-    2, 2, 2, 8);
+    1, 1, 2, 8);
 
- const material3 = new THREE.MeshPhongMaterial({color:0x44aa88});
+ const material3 = new THREE.MeshPhongMaterial({color:0x99aa00});
 
 const Cylinder = new THREE.Mesh(cylinderGeometry,material3);
 
@@ -112,9 +112,9 @@ const Cylinder = new THREE.Mesh(cylinderGeometry,material3);
 
 //const detail = 2;  
 
-const dodecahedronGeometry = new THREE.DodecahedronGeometry(2, 2);
+const dodecahedronGeometry = new THREE.DodecahedronGeometry(1, 3);
 
-const material4 = new THREE.MeshPhongMaterial({color:0x44aa88});
+const material4 = new THREE.MeshPhongMaterial({color:0x22cc11});
 const Dodecahedron = new THREE.Mesh(dodecahedronGeometry,material4);
 
 //function animate
@@ -133,9 +133,14 @@ function animate(){
   Dodecahedron.rotation.y += 0.001;
 }
 scene.add(cube);
+cube.position.x = 4;
 scene.add(Cone);
+Cone.position.x = 0;
 scene.add(Circle);
+Circle.position.x = -2;
 scene.add(Dodecahedron);
+Dodecahedron.position.x = 2;
 scene.add(Cylinder);
+Cylinder.position.x = -4;
 animate();
 
